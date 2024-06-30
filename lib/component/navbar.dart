@@ -53,6 +53,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
                 child: Text(
                   'CONTACT US',
                   style: TextStyle(color: Colors.black),
+                  //shas
                 ),
               ),
             ),
