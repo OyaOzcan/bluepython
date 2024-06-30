@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Footer extends StatelessWidget {
   const Footer({Key? key}) : super(key: key);
@@ -16,9 +17,12 @@ class Footer extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset(
-                    'assets/logo.png',
-                    scale: 4,
+                  Container(
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                    child: Image.asset(
+                      'assets/logo.png',
+                      scale: 8,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   const Text(
@@ -28,34 +32,28 @@ class Footer extends StatelessWidget {
                   const SizedBox(height: 20),
                   Row(
                     children: [
-                      IconButton(
-                        icon: const Icon(Icons.facebook),
-                        color: Colors.white,
-                        onPressed: () {
-                          // Add action for Facebook button
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.abc),
-                        color: Colors.white,
-                        onPressed: () {
-                          // Add action for Instagram button
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.abc),
-                        color: Colors.white,
-                        onPressed: () {
-                          // Add action for Twitter button
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.abc),
-                        color: Colors.white,
-                        onPressed: () {
-                          // Add action for YouTube button
-                        },
-                      ),
+                      GestureDetector(
+                onTap: () => _launchURL(Uri.parse('https://www.linkedin.com/company/blue-python-platform/')),
+                child: Container(
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                  child: Image.asset(
+                           color: Colors.white,
+                    scale: 4,
+                    'assets/linkedin-icon.png', // Doğru dosya yolu
+                    width: 50,
+                    height: 50,
+                  ),
+                ),
+              ),
+              SizedBox(width: 20),
+              GestureDetector(
+                onTap: () => _launchURL(Uri.parse('https://x.com/Blue_Python_Plt')),
+                child: Image.asset(
+                  'assets/twitter-icon.png', // Doğru dosya yolu
+                  width: 50,
+                  height: 50,
+                ),
+              ),
                     ],
                   ),
                 ],
@@ -130,6 +128,15 @@ class Footer extends StatelessWidget {
       ),
     );
   }
+
+   void _launchURL(Uri url) async {
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
 }
 
 class HoverTextButton extends StatefulWidget {

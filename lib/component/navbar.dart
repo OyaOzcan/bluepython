@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NavBar extends StatelessWidget implements PreferredSizeWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -23,9 +24,9 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
             children: [
               _buildNavItem('HOME', true),
               _buildNavItem('FEATURES'),
-              _buildNavItem('INTEGRATIONS'),
-              _buildNavItem('PRICING'),
-              _buildNavItem('FAQS'),
+            //  _buildNavItem('INTEGRATIONS'),
+             // _buildNavItem('PRICING'),
+              //_buildNavItem('FAQS'),
             ],
           ),
           Container(
@@ -46,7 +47,7 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
-              onPressed: () {},
+              onPressed: _launchEmail,
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Text(
@@ -59,6 +60,23 @@ class NavBar extends StatelessWidget implements PreferredSizeWidget {
         ],
       ),
     );
+  }
+
+  void _launchEmail() async {
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: 'example@example.com',
+      queryParameters: {
+        'subject': 'Example Subject',
+        'body': 'Hello, this is an example email body.'
+      },
+    );
+
+    if (await canLaunchUrl(emailLaunchUri)) {
+      await launchUrl(emailLaunchUri);
+    } else {
+      throw 'Could not launch $emailLaunchUri';
+    }
   }
 
   Widget _buildNavItem(String title, [bool isActive = false]) {

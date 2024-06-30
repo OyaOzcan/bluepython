@@ -51,6 +51,36 @@ class ThirdFeatureContainer extends StatelessWidget {
     );
   }
 
+  Widget _buildThirdRateColumn(String value, String title1, String title2, Color gradientColor) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const SizedBox(height: 8),
+        Text(
+          '4',
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.white,
+             fontSize: 40,
+        fontFamily: 'Inter',
+        fontWeight: FontWeight.w700,
+
+          ),
+        ),
+        Text(
+          title2,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontFamily: 'Open Sans',
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _buildGradientText(String text, Color gradientColor) {
     return ShaderMask(
       shaderCallback: (bounds) => const LinearGradient(
@@ -120,7 +150,7 @@ class ThirdFeatureContainer extends StatelessWidget {
             _buildSuccessRateColumn('~78%', 'Futures Transactions', 'Success Rate', Colors.blue),
           ],
         ),
-        _buildSuccessRateColumn('4%', 'Active ETF\'s', 'Automatically Managed', Colors.white),
+        _buildThirdRateColumn('4%', 'Active ETF\'s', 'Automatically Managed', Colors.white),
       ],
     );
 

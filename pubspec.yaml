@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.4.1 <4.0.0'
+  sdk: '>=3.3.2 <4.0.0'
 
 dependencies:
   flutter:
@@ -14,6 +14,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   provider: ^6.1.2
   google_fonts: ^6.2.1
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:
@@ -30,4 +31,6 @@ flutter:
     - assets/03.png
     - assets/04.png
     - assets/small-logo.png
+    - assets/linkedin-icon.png
+    - assets/twitter-icon.png
  
